@@ -8,5 +8,12 @@ const site = lume({
 
 // CSS with extra stuff :D
 site.use(sass());
-    
+
+// Get the chore list
+site.data("getChoreList", async () => {
+    const resp = await fetch("http://localhost:8000/getChoreList");
+    const respText = await resp.text();
+    return await JSON.parse(respText).chores;
+})
+
 export default site;
